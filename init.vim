@@ -8,7 +8,7 @@ set hlsearch
 set autoindent
 set clipboard=unnamed
 set nocursorcolumn              " Do not highlight column (speeds up highlighting)
-set nocursorline 
+set nocursorline
 set backspace=2
 
 call plug#begin('~/.vim/plugged')
@@ -27,12 +27,15 @@ Plug 'dense-analysis/ale'
 Plug 'majutsushi/tagbar'
 Plug 'easymotion/vim-easymotion'
 Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/gv.vim'
-Plug 'junegunn/fzf.vim'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'tpope/vim-fugitive'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'fatih/molokai'
 call plug#end()
 
 " Enable to copy to clipboard for operations like yank, delete, change and put
@@ -50,10 +53,21 @@ endif
 
 " Colorscheme
 syntax enable
+" 打开 24 位真彩色支持
+set termguicolors
+" 搜索的时候忽略大小字字母
+"set ignorecase
+" 若搜索内容中有大写字母，则不再忽略大小写
+"set smartcase
+" 高亮第80列
+set colorcolumn=80
+" 高亮光标所在行
+"set cursorline
+
 "set t_Co=256
-"let g:rehash256 = 1
-"let g:molokai_original = 1
-"colorscheme molokai
+let g:rehash256 = 1
+let g:molokai_original = 1
+colorscheme molokai
 
 " Set leader shortcut to a comma ','. By default it's the backslash
 let mapleader = ','
@@ -74,6 +88,14 @@ let g:go_highlight_generate_tags = 1
 " Open :GoDeclsDir with ctrl-g
 nmap <C-g> :GoDeclsDir<cr>
 imap <C-g> <esc>:<C-u>GoDeclsDir<cr>
+
+":GoInfo
+"# shortcut
+autocmd FileType go nmap <Leader>i <Plug>(go-info)
+"# 自动显示info信息,当光标停留在合法的描述符上后，会自动显示info信息
+let g:go_auto_type_info = 1
+"# 设置停留时间
+set updatetime=500
 
 augroup go
   autocmd!
@@ -141,7 +163,7 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
+"    execute 'h '.expand('<cword>')
   else
     call CocAction('doHover')
   endif
