@@ -536,3 +536,31 @@ nnoremap <leader>a :cclose<CR>
 刚开始的也使用过别人的vimrc配置文件，SpaceVim，spf13, 安装下来自己完全懵逼了，酷炫的界面，集成各种vim功能，介绍高大上，有些还乱改快捷键，插件复杂的和IDE一样，对于一个新手来说完全不会用，直接劝退，所以新手还是根据自己喜好动手一步一步配置最好，可以借鉴学习别人配置，但是不要拿来直接用，就像有的快捷键适合自己操作习惯才是最好的。
 
 最近也折腾了不少的插件，浪费了不少时间，vim的可定制自由度非常高，但是完全没必要浪费时间在插件上面就行，vim自身才是最重要的，插件安装折腾下来感受就是：插件越少越好，各个插件的快捷键尽量越少越好。插件安装使用尽可能开箱即用，不需要太多的配置，必须知道自己安装每一个插件的用法，熟练掌握插件中快捷键的用途，尽可能使用vim命令技巧。
+
+## 其他
+### tmux 开启真彩色
+
+tmux > 2.2 后开始支持真彩色。在 .tmux.conf 中添加如下内容：
+```
+set -g default-terminal screen-256color
+set-option -ga terminal-overrides ",*256col*:Tc" #
+```
+这句是关键
+
+重新开启 tmux 即可。注意要先退出所有正在运行的 tmux 后再重开 tmux
+
+### vim 开启真彩色
+vim >= 7.4.1770 及 neovim >= 0.2.2 都支持真彩色，但需要少许配置。在 .vimrc 中加入：
+```
+if has("termguicolors")
+    " fix bug for vim
+    set t_8f=^[[38;2;%lu;%lu;%lum
+    set t_8b=^[[48;2;%lu;%lu;%lum
+
+    " enable true color
+    set termguicolors
+endif
+```
+其中 termguicolors 用来开启真彩色，前面两行用来解决 vim 的 BUG (neovim 不需要），其中 ^[ 是代表 ESC 键，需要在 vim 中按 Ctrl-v ESC 来输入。
+
+最后可以在 vim 中开启 terminal (vim 8 或 neovim 中执行 :terminal)，执行上面的 24-bit-color.sh 来验证是否成功。
