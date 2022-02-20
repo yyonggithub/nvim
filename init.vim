@@ -15,27 +15,41 @@ call plug#begin('~/.vim/plugged')
 """""""""""""""""""""
 "      Plugins      "
 """""""""""""""""""""
+" > Default
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'fatih/vim-go'
 Plug 'tpope/vim-surround'
 Plug 'mhinz/vim-startify'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-commentary'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-"Plug 'dense-analysis/ale'
-Plug 'majutsushi/tagbar'
 Plug 'easymotion/vim-easymotion'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'majutsushi/tagbar'
+"Plug 'dense-analysis/ale'
+Plug 'jiangmiao/auto-pairs'
+
+" > Coc Plugin
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" > Go
+Plug 'fatih/vim-go'
+Plug 'SirVer/ultisnips'
+
+" > Search
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'jiangmiao/auto-pairs'
-Plug 'junegunn/gv.vim'
-Plug 'SirVer/ultisnips'
+
 Plug 'honza/vim-snippets'
+
+" > Git
 Plug 'tpope/vim-fugitive'
-Plug 'ctrlpvim/ctrlp.vim'
+Plug 'junegunn/gv.vim'
+Plug 'airblade/vim-gitgutter'
+
+" > Theme
 Plug 'fatih/molokai'
+
 call plug#end()
 
 " Enable to copy to clipboard for operations like yank, delete, change and put
