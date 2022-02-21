@@ -1,9 +1,10 @@
 {
-  "suggest.noselect": false,
   "diagnostic.errorSign": "✘",
   "diagnostic.warningSign": "!",
   "diagnostic.infoSign": "?",
-  "diagnostic.checkCurrentLine": true,
+  "suggest.noselect": false,
+  "coc.preferences.diagnostic.displayByAle": true,
+  "suggest.floatEnable": true,
   "coc.preferences.formatOnSaveFiletypes": [
     "javascript",
     "html",
@@ -12,15 +13,11 @@
     "scss",
     "go"
   ],
-  "coc.preferences.hoverTarget": "float",
   "languageserver": {
     "golang": {
       "command": "gopls",
       "rootPatterns": ["go.mod"],
       "filetypes": ["go"]
     }
-  },
-  "go.goplsOptions": {
-    "staticcheck": true
   }
 }
